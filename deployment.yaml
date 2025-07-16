@@ -1,0 +1,21 @@
+version: 0.4.6
+
+namespace: whiteboard
+project: whiteboard
+
+services:
+  - name: web
+    image: ghcr.io/markmorcos/whiteboard-web
+    port: 3000
+    ingress:
+      host: whiteboard.morcos.tech
+      path: /?(.*)
+      pathType: ImplementationSpecific
+  - name: socket
+    context: socket
+    image: ghcr.io/markmorcos/whiteboard-socket
+    port: 8080
+    ingress:
+      host: whiteboard.morcos.tech
+      path: /socket/?(.*)
+      pathType: ImplementationSpecific
